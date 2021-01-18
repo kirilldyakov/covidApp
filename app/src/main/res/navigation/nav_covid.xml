@@ -10,18 +10,18 @@
         android:id="@+id/mainActivity"
         android:name="ru.strongit.covidapp.ui.MainActivity"
         android:label="MainActivity" >
-        <action
-            android:id="@+id/action_mainActivity_to_comparationFragment"
-            app:destination="@id/comparationFragment" />
-        <action
-            android:id="@+id/action_mainActivity_to_globalFragment"
-            app:destination="@id/globalFragment" />
-        <action
-            android:id="@+id/action_mainActivity_to_searchFragment"
-            app:destination="@id/searchFragment" />
-        <action
-            android:id="@+id/action_mainActivity_to_settingsFragment"
-            app:destination="@id/settingsFragment" />
+<!--        <action-->
+<!--            android:id="@+id/action_mainActivity_to_comparationFragment"-->
+<!--            app:destination="@id/comparationFragment" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_mainActivity_to_globalFragment"-->
+<!--            app:destination="@id/globalFragment" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_mainActivity_to_searchFragment"-->
+<!--            app:destination="@id/searchFragment" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_mainActivity_to_settingsFragment"-->
+<!--            app:destination="@id/settingsFragment" />-->
     </activity>
     <fragment
         android:id="@+id/searchFragment"
