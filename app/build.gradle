@@ -39,6 +39,9 @@ android {
 }
 
 dependencies {
+    // DATA MODULE
+    implementation project(":data:local")
+    implementation project(":data:model")
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.3.2'
@@ -68,8 +71,6 @@ dependencies {
     implementation "org.koin:koin-androidx-fragment:$koin_version"
 // Koin AndroidX WorkManager
     implementation "org.koin:koin-androidx-workmanager:$koin_version"
-// Koin AndroidX Jetpack Compose
-    implementation "org.koin:koin-androidx-compose:$koin_version"
 // Koin AndroidX Experimental features
     implementation "org.koin:koin-androidx-ext:$koin_version"
 

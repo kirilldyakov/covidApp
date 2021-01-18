@@ -1,12 +1,11 @@
 package ru.strongit.covidapp.di
 
-import org.koin.core.module.Module
+import ru.strongit.local.di.localModule
 
-val appComponent = listOf<Module>(
+val appComponent = listOf(
 //        repositoryModule,
-//
 //        createRemoteModule("http://192.168.1.40:8087/api/"),
-////        createRemoteModule("http://192.168.1.56:8080/api/"),
-//        featureBenzinModule,
-//        localModule
+//        createRemoteModule("http://192.168.1.56:8080/api/"),
+//        featureModule,
+        localModule
 )
