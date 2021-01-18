@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_covid.xml"
+
+    app:startDestination="@id/globalFragment">
+
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="ru.strongit.covidapp.ui.MainActivity"
+        android:label="MainActivity" >
+        <action
+            android:id="@+id/action_mainActivity_to_comparationFragment"
+            app:destination="@id/comparationFragment" />
+        <action
+            android:id="@+id/action_mainActivity_to_globalFragment"
+            app:destination="@id/globalFragment" />
+        <action
+            android:id="@+id/action_mainActivity_to_searchFragment"
+            app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_mainActivity_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+    </activity>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="ru.strongit.covidapp.ui.search.SearchFragment"
+        android:label="search_fragment"
+        tools:layout="@layout/search_fragment" />
+    <fragment
+        android:id="@+id/comparationFragment"
+        android:name="ru.strongit.covidapp.ui.comparation.ComparationFragment"
+        android:label="comparation_fragment"
+        tools:layout="@layout/comparation_fragment" />
+    <fragment
+        android:id="@+id/globalFragment"
+        android:name="ru.strongit.covidapp.ui.global.GlobalFragment"
+        android:label="global_fragment"
+        tools:layout="@layout/global_fragment" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="ru.strongit.covidapp.ui.settings.SettingsFragment"
+        android:label="settings_fragment"
+        tools:layout="@layout/settings_fragment" />
+
+</navigation>

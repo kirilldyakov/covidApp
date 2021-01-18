@@ -1,7 +1,8 @@
-package ru.strongit.covidapp
+package ru.strongit.covidapp.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import ru.strongit.covidapp.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
