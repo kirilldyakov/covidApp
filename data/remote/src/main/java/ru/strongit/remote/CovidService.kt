@@ -13,7 +13,7 @@ interface CovidService {
         @Query("country") country: String?,
         @Query("ab") ab: String?,
         @Query("continent") continent: String?
-    ): Deferred<ApiResult<CountryNW>>
+    ): Deferred<Map<String, Map<String, CountryNW>>>
 
     @GET("history")
     fun getHistory(

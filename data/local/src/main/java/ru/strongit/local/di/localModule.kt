@@ -9,5 +9,5 @@ private const val DATABASE = "DATABASE"
 
 val localModule = module {
     single(qualifier = named(DATABASE)) { CovidAppDatabase.buildDatabase(androidContext()) }
-//    factory { (get(named(DATABASE)) as CovidAppDatabase).countryDao() }
+    factory { (get(named(DATABASE)) as CovidAppDatabase).countryDao() }
 }

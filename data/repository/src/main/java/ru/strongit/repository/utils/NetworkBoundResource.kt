@@ -8,6 +8,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.*
 import timber.log.Timber
+import timber.log.Timber.tag
 import kotlin.coroutines.coroutineContext
 
 @SuppressLint("LogNotTimber")
@@ -46,6 +47,7 @@ abstract class NetworkBoundResource<ResultType, RequestType> {
         Log.d(NetworkBoundResource::class.java.name, "Fetch data from network")
         setValue(Resource.loading(dbResult)) // Dispatch latest value quickly (UX purpose)
         val apiResponse = createCallAsync().await()
+        println("ZZZ5"+apiResponse.toString())
         Log.e(NetworkBoundResource::class.java.name, "Data fetched from network")
         saveCallResults(processResponse(apiResponse))
         setValue(Resource.success(loadFromDb()))

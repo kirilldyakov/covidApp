@@ -1,32 +1,37 @@
 package ru.strongit.covidapp.ui.global
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil.inflate
+import androidx.fragment.app.Fragment
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.strongit.covidapp.R
+import ru.strongit.covidapp.databinding.GlobalFragmentBinding
+import ru.strongit.covidapp.ui.global.adapter.CountryAdapter
 
 class GlobalFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = GlobalFragment()
-    }
+    private lateinit var binding: GlobalFragmentBinding
 
-    private lateinit var viewModel: GlobalViewModel
+    private val viewModel: GlobalViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.global_fragment, container, false)
+    ): View {
+        binding = inflate(inflater, R.layout.global_fragment, container, false)
+
+        binding.vm = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(GlobalViewModel::class.java)
-        // TODO: Use the ViewModel
+        binding.recyclerView.adapter = CountryAdapter()//viewModel)
+        binding.swipeRefreshLayout.setOnRefreshListener { viewModel.reload() }
     }
 
 }

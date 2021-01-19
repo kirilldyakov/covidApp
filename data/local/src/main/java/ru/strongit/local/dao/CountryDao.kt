@@ -35,7 +35,7 @@ abstract class CountryDao : BaseDao<CountryDB>() {
     //todo
     @Query("SELECT * FROM COUNTRY WHERE id = :id")
     fun getCountry(id: Long): Country {
-        return Country()
+        return Country( country = "" )
     }
 
 

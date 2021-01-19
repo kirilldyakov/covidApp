@@ -16,19 +16,19 @@ data class CountryNW(
         val deaths: Int? = null,
 
         @SerializedName("country")
-        val name: String? = null,
+        val country: String,
 
         @SerializedName("population")
         val population: Long? = null,
 
         @SerializedName("sq_km_area")
-        val sqKmArea: Long? = null,
+        val sqKmArea: Double? = null,
 
         @SerializedName("life_expectancy")
         val lifeExpectancy: Double? = null,
 
         @SerializedName("elevation_in_meters")
-        val elevation: Int? = null,
+        val elevation: String? = null,
 
         @SerializedName("continent")
         val continent: String? = null,
@@ -43,13 +43,13 @@ data class CountryNW(
         val iso: Int? = null,
 
         @SerializedName("capital_city")
-        val capitalCity: Long? = null,
+        val capitalCity: String? = null,
 
         @SerializedName("lat")
-        val latitude: Double? = null,
+        val latitude: String? = null,
 
         @SerializedName("long")
-        val longitude: Double? = null,
+        val longitude: String? = null,
 
         @SerializedName("updated")
         val updated: Date? = null,

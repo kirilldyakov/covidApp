@@ -1,12 +1,12 @@
 package ru.strongit.repository
 
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import kotlinx.coroutines.Deferred
 import ru.strongit.covid.model.converter.convertFromDB
 import ru.strongit.covid.model.converter.convertFromNW
 import ru.strongit.covid.model.entity.Country
-import ru.strongit.covid.model.network.ApiResult
 import ru.strongit.covid.model.network.CountryNW
 import ru.strongit.local.dao.CountryDao
 import ru.strongit.remote.CovidDatasource
@@ -71,10 +71,17 @@ class CountryRepositoryImpl(
 
 
     override suspend fun getCountriesWithCache(forceRefresh: Boolean): LiveData<Resource<List<Country>>> {
-        return object : NetworkBoundResource<List<Country>, ApiResult<CountryNW>>() {
+        return object : NetworkBoundResource<List<Country>, Map<String, Map<String, CountryNW>>>() {
 
-            override fun processResponse(response: ApiResult<CountryNW>): List<Country> =
-                response.items.map { it.convertFromNW() }.toList()
+            override fun processResponse(response: Map<String, Map<String, CountryNW>>): List<Country> {
+                val list: MutableList<Country> = ArrayList()
+                for ((k0, v0) in response) {
+                    for ((k1, countryNW) in v0) {
+                        list.add(countryNW.convertFromNW())
+                    }
+                }
+                return list
+            }
 
             override suspend fun saveCallResults(items: List<Country>) =
                 dao.save(items)
@@ -85,7 +92,7 @@ class CountryRepositoryImpl(
             override suspend fun loadFromDb(): List<Country> =
                 dao.getAllCountries().convertFromDB()
 
-            override fun createCallAsync(): Deferred<ApiResult<CountryNW>> =
+            override fun createCallAsync(): Deferred<Map<String, Map<String, CountryNW>>> =
                 datasource.getCasesAsync(null, null, null)
 
         }.build().asLiveData()

@@ -1,6 +1,7 @@
 package ru.strongit.repository.usecase
 
 import kotlinx.coroutines.runBlocking
+import ru.strongit.covid.model.entity.Country
 import ru.strongit.covid.model.network.CountryNW
 import ru.strongit.repository.CountryRepository
 
@@ -8,25 +9,25 @@ class CountryUseCase(
     private val covidRepository: CountryRepository
 ) {
 
-    fun save(countryNW: CountryNW) {
+    fun save(country: Country) {
         runBlocking {
-            covidRepository.saveCountry(countryNW)
+            covidRepository.saveCountry(country)
         }
     }
 
-    fun create(countryNW: CountryNW) {
+    fun create(country: Country) {
         runBlocking {
-            covidRepository.insertCountry(countryNW)
+            covidRepository.insertCountry(country)
         }
     }
 
-    fun delete(countryNW: CountryNW) {
+    fun delete(country: Country) {
         runBlocking {
-            covidRepository.delete(countryNW)
+            covidRepository.delete(country)
         }
     }
 
-    suspend fun get(id: Long): CountryNW {
+    suspend fun get(id: Long): Country {
         return covidRepository.getCountry(id)
     }
 }

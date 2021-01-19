@@ -15,7 +15,7 @@ fun createRemoteModule(baseUrl: String) = module {
 
     factory<Interceptor> {
         HttpLoggingInterceptor()
-                .setLevel(HttpLoggingInterceptor.Level.HEADERS)
+                .setLevel(HttpLoggingInterceptor.Level.BODY)
     }
 
     factory {
@@ -28,7 +28,7 @@ fun createRemoteModule(baseUrl: String) = module {
         GsonConverterFactory.create(
                 GsonBuilder()
                         //2020/12/26 12:21:56+00"    //TODO Поверить формат времени
-                        .setDateFormat("yyyy/MM/dd HH:mm:sszzz")
+                        .setDateFormat("yyyy/MM/dd HH:mm:ssX")
                         .create()
         )
     }
