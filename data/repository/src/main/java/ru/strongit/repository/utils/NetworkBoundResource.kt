@@ -1,5 +1,6 @@
 package ru.strongit.repository.utils
 
+import android.annotation.SuppressLint
 import android.util.Log
 import androidx.annotation.MainThread
 import androidx.annotation.WorkerThread
@@ -7,9 +8,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.*
 import timber.log.Timber
-import java.lang.Exception
 import kotlin.coroutines.coroutineContext
 
+@SuppressLint("LogNotTimber")
 abstract class NetworkBoundResource<ResultType, RequestType> {
 
     private val result = MutableLiveData<Resource<ResultType>>()
@@ -26,11 +27,11 @@ abstract class NetworkBoundResource<ResultType, RequestType> {
                 try {
                     fetchFromNetwork(dbResult)
                 } catch (e: Exception) {
-                    Log.e("NetworkBoundResource", "An error happened: $e")
+                    Timber.e("NetworkBoundResource: An error happened: $e")
                     setValue(Resource.error(e, loadFromDb()))
                 }
             } else {
-                Log.d(NetworkBoundResource::class.java.name, "Return data from local database")
+                Timber.d(NetworkBoundResource::class.java.name, "Return data from local database")
                 setValue(Resource.success(dbResult))
             }
         }
