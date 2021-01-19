@@ -6,17 +6,6 @@ plugins {
 
 android {
     compileSdkVersion 30
-//    defaultConfig {
-//        minSdkVersion Versions.minSdk
-//        targetSdkVersion Versions.targetSdk
-//        versionCode Releases.versionCode
-//        versionName Releases.versionName
-//    }
-//    buildTypes {
-//        release {
-//            minifyEnabled true
-//        }
-//    }
 }
 
 dependencies {
