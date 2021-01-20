@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+<!--        <variable-->
+<!--            name="vm"-->
+<!--            type="ru.strongit.benzin.ui.fillups.adapter.FillupItemViewModel" />-->
+
+        <variable
+            name="country"
+            type="ru.strongit.covid.model.entity.Country" />
+
+<!--        <variable-->
+<!--            name="viewModel"-->
+<!--            type="ru.strongit.benzin.ui.fillups.FillupsViewModel" />-->
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground">
+<!--        android:onClick="@{(v) -> viewModel.userClicksOnItem(fillup)}" >-->
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="4">
+
+            <TextView
+                android:id="@+id/name_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="84dp"
+                android:layout_marginBottom="4dp"
+                android:text="@{country.country}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                 />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_gravity="bottom"
+            android:background="#777" />
+
+    </FrameLayout>
+</layout>
