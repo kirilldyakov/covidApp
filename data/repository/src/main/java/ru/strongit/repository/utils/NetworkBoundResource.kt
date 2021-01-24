@@ -41,15 +41,15 @@ abstract class NetworkBoundResource<ResultType, RequestType> {
 
     fun asLiveData() = result as LiveData<Resource<ResultType>>
 
-    // ---
-
     private suspend fun fetchFromNetwork(dbResult: ResultType) {
-        Log.d(NetworkBoundResource::class.java.name, "Fetch data from network")
         setValue(Resource.loading(dbResult)) // Dispatch latest value quickly (UX purpose)
         val apiResponse = createCallAsync().await()
-        println("ZZZ5"+apiResponse.toString())
         Log.e(NetworkBoundResource::class.java.name, "Data fetched from network")
-        saveCallResults(processResponse(apiResponse))
+        try {
+            saveCallResults(processResponse(apiResponse))
+        } catch (e: Throwable) {
+            println(e.message)
+        }
         setValue(Resource.success(loadFromDb()))
     }
 

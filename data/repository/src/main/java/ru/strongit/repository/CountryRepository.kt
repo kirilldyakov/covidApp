@@ -1,7 +1,6 @@
 package ru.strongit.repository
 
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import kotlinx.coroutines.Deferred
 import ru.strongit.covid.model.converter.convertFromDB
@@ -36,8 +35,8 @@ interface CountryRepository {
 }
 
 class CountryRepositoryImpl(
-    private val datasource: CovidDatasource,
-    private val dao: CountryDao
+        private val datasource: CovidDatasource,
+        private val dao: CountryDao
 ) : CountryRepository {
 
     override suspend fun saveCountry(country: Country) {
@@ -75,25 +74,27 @@ class CountryRepositoryImpl(
 
             override fun processResponse(response: Map<String, Map<String, CountryNW>>): List<Country> {
                 val list: MutableList<Country> = ArrayList()
-                for ((k0, v0) in response) {
-                    for ((k1, countryNW) in v0) {
-                        list.add(countryNW.convertFromNW())
+                for ((country, v0) in response) {
+                    for ((region, countryNW) in v0) {
+                        list.add(countryNW.convertFromNW()
+                                .copy(country = country, region = region)
+                        )
                     }
                 }
                 return list
             }
 
             override suspend fun saveCallResults(items: List<Country>) =
-                dao.save(items)
+                    dao.save(items)
 
             override fun shouldFetch(data: List<Country>?): Boolean =
-                data == null || data.isEmpty() || forceRefresh
+                    data == null || data.isEmpty() || forceRefresh
 
             override suspend fun loadFromDb(): List<Country> =
-                dao.getAllCountries().convertFromDB()
+                    dao.getAllCountries().convertFromDB()
 
             override fun createCallAsync(): Deferred<Map<String, Map<String, CountryNW>>> =
-                datasource.getCasesAsync(null, null, null)
+                    datasource.getCasesAsync(null, null, null)
 
         }.build().asLiveData()
     }

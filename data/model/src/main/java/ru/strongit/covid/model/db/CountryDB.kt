@@ -7,8 +7,8 @@ import androidx.room.PrimaryKey
 import java.util.*
 
 @Entity(
-        tableName = "country",
-        indices = [Index(value = ["country"], name = "idxName", unique = true)]
+        tableName = "country"
+        //indices = [Index(value = ["country"], name = "idxCountry", unique = true)]
 )
 data class CountryDB(
         @PrimaryKey(autoGenerate = true)
@@ -24,7 +24,10 @@ data class CountryDB(
         val deaths: Int? = null,
 
         @ColumnInfo(name = "country")
-        val country: String,
+        val country: String? = null,
+
+        @ColumnInfo(name = "region")
+        val region: String? = null,
 
         @ColumnInfo(name = "population")
         val population: Long? = null,

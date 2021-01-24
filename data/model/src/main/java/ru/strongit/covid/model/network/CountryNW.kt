@@ -16,7 +16,7 @@ data class CountryNW(
         val deaths: Int? = null,
 
         @SerializedName("country")
-        val country: String,
+        val country: String? = null,
 
         @SerializedName("population")
         val population: Long? = null,

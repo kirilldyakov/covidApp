@@ -25,12 +25,13 @@ class GlobalFragment : Fragment() {
 
         binding.vm = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
+        viewModel.isLoading.observe(viewLifecycleOwner, { binding.swipeRefreshLayout.isRefreshing = it })
         return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        binding.recyclerView.adapter = CountryAdapter()//viewModel)
+        binding.recyclerView.adapter = CountryAdapter()
         binding.swipeRefreshLayout.setOnRefreshListener { viewModel.reload() }
     }
 

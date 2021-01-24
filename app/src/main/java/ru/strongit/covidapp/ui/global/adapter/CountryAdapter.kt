@@ -53,7 +53,7 @@ class CountryAdapter():
     private fun convert(items: List<Country>): List<ItemTypes> {
         val list: MutableList<ItemTypes> = ArrayList()
         items.sortedBy { it.continent }
-        val groups = items.groupBy { it.continent }
+        val groups = items.groupBy { it.country }
         groups.mapValues { cou ->
             list.add(ItemTypes.TypeHeader(cou.key?:"-"))
             cou.value.map { list.add(ItemTypes.TypeCountry(it)) }
